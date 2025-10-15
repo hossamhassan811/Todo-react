@@ -11,7 +11,7 @@ import All from './All'
 import Pending from './Pending'
 import IsDone from './IsDone'
 import { Tasks } from "./ListContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import Alert from '@mui/material/Alert';
 import './style.css'
@@ -21,7 +21,14 @@ function App() {
 
   const [userTask, setUserTask] = useState({id:'', title: "",body:'' });
    const [alert, setAlert] = useState({ show: false, type: "", message: "" });
-  const [tasksData, setTasksData] = useState([]);
+  const [tasksData, setTasksData] = useState(() => {
+    const savedTasks = localStorage.getItem('tasks');
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasksData));
+  }, [tasksData]);
 
 function showTemporaryAlert(type, message) {
     setAlert({ show: true, type, message });

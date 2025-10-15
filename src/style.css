@@ -1,0 +1,49 @@
+.todoDiv{
+    display: flex;
+    align-items:center;
+    justify-content: space-between;
+   
+     background-color: rgba(255, 0, 0, 0.649);
+    padding-inline: 20px;
+    color: white;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.todoDiv.completed {
+    background-color: rgba(7, 172, 62, 0.649);
+}
+.listbtn{
+    background-color: white;
+  
+    border-radius: 20px;
+   font-size: 10px;
+
+}
+
+.addtask{
+   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.addtask input{
+    width: 300px;
+   padding: 20px;
+    border-radius: 20px;
+    border: none;
+    padding-inline: 20px;
+    
+}
+.addtask button{
+    margin: 20px;
+    border-radius: 20px;
+    border: none;
+    background-color: rgb(7, 172, 62);
+    color: white;
+    
+    cursor: pointer;
+}
+.taskfield{
+    margin: 10px;
+}

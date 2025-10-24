@@ -1,6 +1,5 @@
 import * as React from "react";
-import logo from "./logo.svg";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import ButtonGroup from "@mui/material/ButtonGroup";
@@ -17,7 +16,7 @@ import Alert from '@mui/material/Alert';
 import './style.css'
 
 function App() {
-
+  const location = useLocation();
 
   const [userTask, setUserTask] = useState({id:'', title: "",body:'' });
    const [alert, setAlert] = useState({ show: false, type: "", message: "" });
@@ -75,12 +74,13 @@ function showTemporaryAlert(type, message) {
             direction="row"
           >
             <ButtonGroup variant="outlined" aria-label="Basic button group">
-              
-              <Link to="/all" style={{ textDecoration: 'none' }}><Button>All</Button></Link>
-              <Link to="/completed" style={{ textDecoration: 'none' }}><Button>Completed</Button></Link>
-              <Link to="/pending" style={{ textDecoration: 'none' }}><Button>UnCompleted</Button></Link>
-              
-             
+
+              <Link to="/all" style={{ textDecoration: 'none' }}><Button variant={location.pathname === '/all' ? 'contained' : 'outlined'}>All</Button></Link>
+              <Link to="/completed" style={{ textDecoration: 'none' }}><Button variant={location.pathname === '/completed' ? 'contained' : 'outlined'}>Completed</Button></Link>
+              <Link to="/pending" style={{ textDecoration: 'none' }}><Button variant={location.pathname === '/pending' ? 'contained' : 'outlined'}>UnCompleted</Button></Link>
+
+
+
             </ButtonGroup>
             <div className="addtask">
               
@@ -106,6 +106,7 @@ function showTemporaryAlert(type, message) {
 
        {/* Routes */}
       <Routes>
+        <Route path="/" element={<All />} />
         <Route path="/all" element={<All />} />
         <Route path="/pending" element={<Pending  />} />
         <Route path="/completed" element={<IsDone />} />
